@@ -1,5 +1,7 @@
 package eu.albertomorales.ontology.model.taxonomy
 
+import scala.annotation.tailrec
+
 class FamilyTreeBuilder {
 
     def load(wholeString: String): FamilyTree = {
@@ -13,7 +15,8 @@ class FamilyTreeBuilder {
       load(tail, new TaxonomyStack(head))
     }
 
-    def load(pending: List[String], current: TaxonomyStack): FamilyTree = {
+    @tailrec
+    private def load(pending: List[String], current: TaxonomyStack): FamilyTree = {
 
       pending match {
         case Nil => current.getTree()
