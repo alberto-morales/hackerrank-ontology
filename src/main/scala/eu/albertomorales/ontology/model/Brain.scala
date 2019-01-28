@@ -44,15 +44,23 @@ object BrainFileTest {
 
   def main(args: Array[String]): Unit = {
     val inputFilePath = args(0)
+    println(s"From: ${inputFilePath}")
+    val outputFilePath = args(1)
+    println(s"To: ${outputFilePath}")
 
+    val t0 = System.nanoTime()
     val gameInput = GameInputHelper
       .generateInputFromSource(GameInputHelperTest.generateTestDataFromFile(inputFilePath))
-
+    val t1 = System.nanoTime()
     val resultado : List[String] = Brain.resolve(gameInput)
+    val t2 = System.nanoTime()
+
+    println("Input time  : " + (t1 - t0) + "ns")
+    println("Resolve time: " + (t2 - t1) + "ns")
+    println("TOTAL time  : " + (t2 - t0) + "ns")
 
     import java.io._
 
-    val outputFilePath = args(1)
     val file = new File(outputFilePath)
     val bw = new BufferedWriter(new FileWriter(file))
 
