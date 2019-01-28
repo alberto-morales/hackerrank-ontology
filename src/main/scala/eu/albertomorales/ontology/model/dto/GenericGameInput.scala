@@ -1,6 +1,5 @@
-package eu.albertomorales.ontology.game
+package eu.albertomorales.ontology.model.dto
 
-import eu.albertomorales.ontology.model.dto.{Query, Question}
 import eu.albertomorales.ontology.model.taxonomy.FamilyTree
 import eu.albertomorales.ontology.model.GameInput
 
@@ -16,24 +15,6 @@ class GenericGameInput(private val _tree: FamilyTree, private val _questions: Li
 
   override def queries: List[Query] = {
     _queries
-  }
-
-}
-
-
-object StdinGameInput {
-
-  def parse(): GameInput = {
-
-    @inline def defined(line: String) = {
-      line != null && line.nonEmpty
-    }
-
-    val lines: List[String] = Iterator.continually(Console.readLine).takeWhile(defined(_)).toList
-
-    val gameInput = GameInputHelper.generateInputFromLineList(lines)
-
-    gameInput
   }
 
 }

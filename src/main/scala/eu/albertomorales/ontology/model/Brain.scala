@@ -44,8 +44,9 @@ object BrainFileTest {
 
   def main(args: Array[String]): Unit = {
     val inputFilePath = args(0)
+
     val gameInput = GameInputHelper
-      .generateInputFromLineList(GameInputHelperTest.generateTestDataFromFile(inputFilePath))
+      .generateInputFromSource(GameInputHelperTest.generateTestDataFromFile(inputFilePath))
 
     val resultado : List[String] = Brain.resolve(gameInput)
 
@@ -69,7 +70,7 @@ object BrainFileTest {
 object BrainFirstTest {
 
   val gameInput = GameInputHelper
-      .generateInputFromLineList(GameInputHelperTest.generateTestData)
+      .generateInputFromSource(GameInputHelperTest.generateTestData)
 
   val resultado : List[String] = Brain.resolve(gameInput)
   resultado.foreach(x => {
